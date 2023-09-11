@@ -14,14 +14,17 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="55"/>
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.Column="1" Grid.Row="1" Margin="15" Padding="15" CornerRadius="4" BorderThickness="1" BorderBrush="#FFBBB9B9" Height="300" VerticalAlignment="Top">
+        <Border Grid.Column="3" Grid.Row="2" Margin="15" Padding="15" CornerRadius="4" BorderThickness="1" BorderBrush="#FFBBB9B9" Height="300" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical"  VerticalAlignment="Center" >
                 <Label Content="Total Statistic" HorizontalAlignment="Center" FontSize="28" FontWeight="DemiBold" />
                 <Grid Margin="0,10,0,0">
@@ -43,7 +46,7 @@
                 </Grid>
             </StackPanel>
         </Border>
-        <DataGrid AutoGenerateColumns="False" Grid.Row="1" Margin="15" ItemsSource="{Binding FilesStats}">
+        <DataGrid AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="3" Margin="15" ItemsSource="{Binding FilesStats}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File path" Binding="{Binding Path}" Width="*"/>
                 <DataGridTextColumn Header="Words" Binding="{Binding Words}" Width="80"/>
@@ -58,24 +61,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Margin="0,0,30,0" Orientation="Vertical" VerticalAlignment="Center">
-                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
-                    <TextBlock Text="Directory" Margin="15,0,10,0"/>
-                    <TextBox Width="150" Text="{Binding DirPath,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                    <Button Content="..." Margin="10,0,0,0" Width="30" Command="{Binding OpenFolder}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Name="subfolder" Content="Subfolders" Margin="15,0,10,0" IsChecked="{Binding Subfolders}" IsEnabled="{Binding CheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                    <Label Content="Depth"/>
-                    <TextBox Margin="5,0,0,0" Width="35" Height="20" Text="{Binding SubfoldersDepth}" IsEnabled="{Binding ElementName=subfolder,Path=IsChecked}"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Button Content="{Binding ButtonName}" Width="70" Command="{Binding Scan}"/>
-                <Button Content="Analize" Width="70" Command="{Binding Analize}"/>
-            </StackPanel>
-            
+       
+        <TextBlock Text="Directory" Margin="15,0,10,0"  VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Height="20" Text="{Binding DirPath,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" DockPanel.Dock="Right"/>
+        <CheckBox Grid.Row="1"  Name="subfolder" Content="Subfolders" Margin="15,0,10,0" IsChecked="{Binding Subfolders}" IsEnabled="{Binding CheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" Content="..."  Width="30" Height="22" Command="{Binding OpenFolder}"/>
+        <StackPanel  Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <Label  Content="Depth"/>
+            <TextBox Margin="5,0,0,0" Width="35" Height="20" Text="{Binding SubfoldersDepth}" IsEnabled="{Binding ElementName=subfolder,Path=IsChecked}"/>
         </StackPanel>
+        <Button Grid.Column="3" Content="{Binding ButtonName}" Height="20" Command="{Binding Scan}" Margin="15,0,15,0"/>
+        <Button Grid.Column="3" Grid.Row="1" Height="20" Content="Analize" Margin="15,0,15,0" Command="{Binding Analize}"/>
+        
     </Grid>
 </Window>
