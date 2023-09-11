@@ -77,16 +77,13 @@ namespace FilesStatistic.Model
                                 });
                             }));
                         }
-                        catch 
-                        {
-                            System.Windows.Application.Current?.Dispatcher.BeginInvoke(new Action(() =>
-                            {
-                                IsScaned = false;
-                            }));
-                            break;
-                        }
+                        catch  {break;}
                     }
-                   
+                    System.Windows.Application.Current?.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        IsScaned = false;
+                    }));
+
                 });
                 getTxtFiles.Start();
             }
