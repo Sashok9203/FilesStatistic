@@ -219,8 +219,6 @@ namespace FilesStatistic.Model
             TotalStat = new();
         }
 
-
-
         public RelayCommand OpenFolder => new((o)=>openFolder());
 
         public RelayCommand Scan => new((o) => getFiles(Subfolders),(o)=>!string.IsNullOrEmpty(DirPath) && !IsAnalize);
