@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\icons8-галочка-60.png" />
   </ItemGroup>
 

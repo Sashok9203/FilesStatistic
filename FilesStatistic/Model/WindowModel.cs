@@ -30,6 +30,7 @@ namespace FilesStatistic.Model
             {
                 isScaned = value;
                 OnPropertyChanged("ButtonName");
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -39,6 +40,7 @@ namespace FilesStatistic.Model
             set
             {
                 isAnalize = value;
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -198,7 +200,7 @@ namespace FilesStatistic.Model
 
         public TotalStatistic TotalStat {get;set;}
 
-        public string ButtonName => IsScaned ? "Cancle" : "Scan";
+        public string ButtonName => IsScaned ? "Cancel" : "Scan";
 
         public string? DirPath
         { 

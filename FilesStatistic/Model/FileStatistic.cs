@@ -1,11 +1,5 @@
-﻿using PropertyChanged;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FilesStatistic.Model
 {
@@ -13,13 +7,13 @@ namespace FilesStatistic.Model
     {
         private bool isAnalized;
                 
-        public int? Words { get; set; }
+        public int Words { get; set; }
        
-        public int? Lines { get; set; }
+        public int Lines { get; set; }
 
-        public int? Punctuation { get; set; }
+        public int Punctuation { get; set; }
 
-        public string? Path { get; set; }
+        public string Path { get; set; }
 
         public bool IsAnalized
         {

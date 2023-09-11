@@ -14,7 +14,7 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="110"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="55"/>
             <ColumnDefinition Width="350"/>
@@ -62,9 +62,9 @@
             </DataGrid.Columns>
         </DataGrid>
        
-        <TextBlock Text="Directory" Margin="15,0,10,0"  VerticalAlignment="Center"/>
+        <TextBlock Text="Directory" Margin="15,0,0,0"  VerticalAlignment="Center"/>
         <TextBox Grid.Column="1" Height="20" Text="{Binding DirPath,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" DockPanel.Dock="Right"/>
-        <CheckBox Grid.Row="1"  Name="subfolder" Content="Subfolders" Margin="15,0,10,0" IsChecked="{Binding Subfolders}" IsEnabled="{Binding CheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="1"  Name="subfolder" Content="Subfolders" Margin="15,0,0,0" IsChecked="{Binding Subfolders}" IsEnabled="{Binding CheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
         <Button Grid.Column="2" Content="..."  Width="30" Height="22" Command="{Binding OpenFolder}"/>
         <StackPanel  Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
             <Label  Content="Depth"/>
