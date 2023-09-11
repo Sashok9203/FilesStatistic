@@ -1,0 +1,81 @@
+﻿<Window x:Class="FilesStatistic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilesStatistic"
+        xmlns:vms="clr-namespace:FilesStatistic.Model"
+        d:DataContext="{d:DesignInstance Type=vms:WindowModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vms:WindowModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="1" Grid.Row="1" Margin="15" Padding="15" CornerRadius="4" BorderThickness="1" BorderBrush="#FFBBB9B9" Height="300" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical"  VerticalAlignment="Center" >
+                <Label Content="Total Statistic" HorizontalAlignment="Center" FontSize="28" FontWeight="DemiBold" />
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                   <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Margin="10" Content="Total words:" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    <Label Margin="10" Grid.Row="1" Content="Total lines:" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    <Label Margin="10" Grid.Row="2" Content="Total Punctuation:" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="{Binding TotalStat.Words}" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalStat.Lines}" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalStat.Punctuation}" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1" Margin="15" ItemsSource="{Binding FilesStats}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File path" Binding="{Binding Path}" Width="*"/>
+                <DataGridTextColumn Header="Words" Binding="{Binding Words}" Width="80"/>
+                <DataGridTextColumn Header="Lines" Binding="{Binding Lines}" Width="80"/>
+                <DataGridTextColumn Header="Punctuations" Binding="{Binding Punctuation}" Width="80"/>
+                <DataGridTemplateColumn Header="Ok" Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding IsAnalizedIcon}" Width="20"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="0,0,30,0" Orientation="Vertical" VerticalAlignment="Center">
+                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                    <TextBlock Text="Directory" Margin="15,0,10,0"/>
+                    <TextBox Width="150" Text="{Binding DirPath,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                    <Button Content="..." Margin="10,0,0,0" Width="30" Command="{Binding OpenFolder}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="subfolder" Content="Subfolders" Margin="15,0,10,0" IsChecked="{Binding Subfolders}" IsEnabled="{Binding CheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                    <Label Content="Depth"/>
+                    <TextBox Margin="5,0,0,0" Width="35" Height="20" Text="{Binding SubfoldersDepth}" IsEnabled="{Binding ElementName=subfolder,Path=IsChecked}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Button Content="{Binding ButtonName}" Width="70" Command="{Binding Scan}"/>
+                <Button Content="Analize" Width="70" Command="{Binding Analize}"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>
